@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_gravity="top"
+    android:background="#FFFFFF"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:keepScreenOn="true">
+    <SurfaceView android:layout_gravity="top"
+        android:id="@+id/surfaceView"
+        android:layout_width="2dp"
+        android:layout_height="2dp" />
+    <View android:layout_gravity="bottom"
+        android:id="@+id/viewDummy"
+        android:background="#FFFFFF"
+        android:layout_width="2dp"
+        android:layout_height="2dp" />
+</FrameLayout>

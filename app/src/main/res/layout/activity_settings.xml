@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:id="@+id/activity_settings"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              android:paddingBottom="@dimen/activity_vertical_margin"
+              android:paddingLeft="@dimen/activity_horizontal_margin"
+              android:paddingRight="@dimen/activity_horizontal_margin"
+              android:paddingTop="@dimen/activity_vertical_margin"
+              tools:context="com.rai220.securityalarmbot.SettingsActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/mainIcon"
+                android:layout_width="fill_parent"
+                android:layout_height="150dp"
+                android:src="@drawable/icon"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ToggleButton
+                    android:id="@+id/startStopServiceButton"
+                    android:textOff="Bot stopped"
+                    android:textOn="Bot running"
+                    android:onClick="onBotStartStopClick"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content" />
+
+                <!--
+                <Button
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:onClick="onStartServiceClick"
+                    android:text="@string/start_service"/>
+
+                <Button
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:onClick="onStopServiceClick"
+                    android:text="@string/stop_service"/>
+                    -->
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
+
+                <Button
+                    android:text="@string/create_new_bot"
+                    android:onClick="createBotButton"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <Button
+                    android:text="@string/set_bot_token"
+                    android:onClick="setTokenButton"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <!--
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableRight="@android:drawable/ic_menu_help"
+                android:onClick="onTokenHintClick"
+                android:text="Bot token:"/>
+
+            <EditText
+                android:id="@+id/botTokenEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="top|left"
+                android:hint="Place Telegram bot token here!"
+                android:inputType="textMultiLine"
+                android:lines="3"
+                android:maxLines="3"
+                android:minLines="3"/>
+                -->
+
+            <CheckBox
+                android:id="@+id/autorunCheckbox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:checked="false"
+                android:onClick="onAutostartCheckboxClick"
+                android:text="Enable autorun"/>
+
+            <EditText
+                android:id="@+id/botPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="top|left"
+                android:hint="Bot password (could be empty)"
+                android:inputType="textPassword"
+                android:paddingBottom="25dp"/>
+
+            <Button
+                android:id="@+id/proVersionButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="onProVersionClick"
+                android:text="@string/button_pro_version"/>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="onLogsClick"
+                android:text="Logs"
+                android:visibility="gone"/>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="onGraphClick"
+                android:text="Temperature Graph"
+                android:visibility="gone"
+                tools:visibility="visible"/>
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

@@ -22,11 +22,14 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ToggleButton;
 
+import com.crashlytics.android.Crashlytics;
 import com.crashlytics.android.answers.Answers;
 import com.crashlytics.android.answers.CustomEvent;
 import com.rai220.securityalarmbot.prefs.PrefsController;
 import com.rai220.securityalarmbot.utils.FabricUtils;
 import com.rai220.securityalarmbot.utils.L;
+
+import io.fabric.sdk.android.Fabric;
 
 import static android.content.pm.PackageManager.PERMISSION_GRANTED;
 import static com.rai220.securityalarmbot.BotService.TELEPHOTO_SERVICE_STOPPED;
@@ -62,6 +65,7 @@ public class SettingsActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        Fabric.with(this, new Crashlytics());
         FabricUtils.initFabric(this);
 
         setContentView(R.layout.activity_settings);

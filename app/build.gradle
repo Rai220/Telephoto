@@ -29,7 +29,7 @@ android {
         minSdkVersion 10
         targetSdkVersion 10
         versionCode 30
-        versionName "1.5.11b-7"
+        versionName "1.5.11b-8"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         setProperty("archivesBaseName", "telephoto-$versionName")
         resValue "string", "app_name", "Telephoto (ver. $versionName)"
@@ -76,9 +76,9 @@ dependencies {
     compile 'joda-time:joda-time:2.9.5'
     compile 'com.fatboyindustrial.gson-jodatime-serialisers:gson-jodatime-serialisers:1.4.0'
 
-    compile 'com.anjlab.android.iab.v3:library:1.0.+'
+    compile 'com.anjlab.android.iab.v3:library:1.0.42'
 
-    compile "com.android.support:support-v4:25.2.+"
+    compile "com.android.support:support-v4:25.3.1"
 
 
     // Доставка сообщений через Google cloud
@@ -86,7 +86,7 @@ dependencies {
     compile 'com.google.firebase:firebase-messaging:10.0.0'
 
     testCompile 'junit:junit:4.12'
-    compile('com.crashlytics.sdk.android:crashlytics:2.6.5@aar') {
+    compile('com.crashlytics.sdk.android:crashlytics:2.6.8@aar') {
         transitive = true;
     }
 }

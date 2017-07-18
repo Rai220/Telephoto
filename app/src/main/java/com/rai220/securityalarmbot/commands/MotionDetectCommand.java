@@ -5,6 +5,7 @@ import com.rai220.securityalarmbot.BotService;
 import com.rai220.securityalarmbot.R;
 import com.rai220.securityalarmbot.commands.types.MdSwitchType;
 import com.rai220.securityalarmbot.prefs.Prefs;
+import com.rai220.securityalarmbot.prefs.PrefsController;
 import com.rai220.securityalarmbot.utils.FabricUtils;
 import com.rai220.securityalarmbot.utils.KeyboardUtils;
 
@@ -37,6 +38,9 @@ public class MotionDetectCommand extends AbstractCommand {
         Prefs.UserPrefs userPrefs = prefs.getUser(message.from().id());
         if (userPrefs != null) {
             MdSwitchType switchType = MdSwitchType.getByName(message.text());
+            prefs.mdSwitchType = switchType;
+            PrefsController.instance.setPrefs(prefs);
+
             if (switchType != null) {
                 String result = "";
                 switch (switchType) {

@@ -184,8 +184,9 @@ public class BotService extends Service implements MotionDetectorController.Moti
         PrefsController.instance.setPrefs(prefs);
 
         timeStatsSaver.start();
-
         locationController.start();
+
+        getDetector().start(prefs.mdSwitchType);
 
         L.i("Service created");
         Answers.getInstance().logCustom(new CustomEvent("Service started!"));
@@ -201,7 +202,6 @@ public class BotService extends Service implements MotionDetectorController.Moti
 
     @Override
     public void onStartSuccess() {
-
     }
 
     @Override

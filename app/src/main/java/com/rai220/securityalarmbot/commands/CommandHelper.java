@@ -67,7 +67,7 @@ public class CommandHelper {
                 AudioCommand.class,
                 TaskerCommand.class,
                 LogCommand.class,
-                ProCommand.class,
+                // ProCommand.class, // Temporary disable this function
                 RestartCommand.class,
                 TimeStatsCommand.class,
                 TimeStatsClearCommand.class,

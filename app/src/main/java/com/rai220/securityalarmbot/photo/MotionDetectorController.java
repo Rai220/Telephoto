@@ -62,50 +62,52 @@ public class MotionDetectorController {
         this.mdType = mdType;
 
         stop();
-        PrefsController.instance.updateLastMdDetected();
+        if (mdType != MdSwitchType.OFF) {
+            PrefsController.instance.updateLastMdDetected();
 
-        oldShot = null;
-        oldShots.clear();
-        motionDetectorThread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    L.i("MD thread started");
-                    final BlockingQueue<ImageShot> queue = new LinkedBlockingQueue<>();
-                    while (!Thread.currentThread().isInterrupted()) {
-                        L.i("MD working...");
-                        final int[] cameraIds = FabricUtils.getSelectedCamerasForMd();
-                        boolean isOk = camera.addTask(
-                                new CameraTask(cameraIds[0], 100, 80, true) {
-                                    @Override
-                                    public void processResult(ImageShot shot) {
-                                        try {
-                                            queue.put(shot);
-                                        } catch (Throwable ex) {
-                                            L.e(ex);
+            oldShot = null;
+            oldShots.clear();
+            motionDetectorThread = new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        L.i("MD thread started");
+                        final BlockingQueue<ImageShot> queue = new LinkedBlockingQueue<>();
+                        while (!Thread.currentThread().isInterrupted()) {
+                            L.i("MD working...");
+                            final int[] cameraIds = FabricUtils.getSelectedCamerasForMd();
+                            boolean isOk = camera.addTask(
+                                    new CameraTask(cameraIds[0], 100, 80, true) {
+                                        @Override
+                                        public void processResult(ImageShot shot) {
+                                            try {
+                                                queue.put(shot);
+                                            } catch (Throwable ex) {
+                                                L.e(ex);
+                                            }
                                         }
-                                    }
-                                }, false);
-                        if (isOk) {
-                            ImageShot shot = queue.take();
-                            isOk = detect(shot);
-                        }
+                                    }, false);
+                            if (isOk) {
+                                ImageShot shot = queue.take();
+                                isOk = detect(shot);
+                            }
 
-                        if (!isOk) {
-                            oldShot = null;
-                            oldShots.clear();
-                            L.i("Camera is busy for md. We will skip one shot.");
-                            Thread.sleep(30 * 1000);
+                            if (!isOk) {
+                                oldShot = null;
+                                oldShots.clear();
+                                L.i("Camera is busy for md. We will skip one shot.");
+                                Thread.sleep(30 * 1000);
+                            }
                         }
+                    } catch (InterruptedException ignore) {
+                    } catch (Throwable ex) {
+                        L.e(ex);
                     }
-                } catch (InterruptedException ignore) {
-                } catch (Throwable ex) {
-                    L.e(ex);
+                    L.i("Motion detector thread stopped.");
                 }
-                L.i("Motion detector thread stopped.");
-            }
-        }, "Motion detector thread");
-        motionDetectorThread.start();
+            }, "Motion detector thread");
+            motionDetectorThread.start();
+        }
     }
 
     public MdSwitchType getMdType() {

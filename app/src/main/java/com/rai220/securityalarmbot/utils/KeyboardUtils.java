@@ -34,7 +34,7 @@ public class KeyboardUtils {
     private static String[][] getStrings(ICommand[] values, boolean ignoreHide) {
         List<String> commandsName = new ArrayList<>();
         for (ICommand val : values) {
-            if (val.isEnable() && (ignoreHide || !val.isHide())) {
+            if (val != null && val.isEnable() && (ignoreHide || !val.isHide())) {
                 commandsName.add(val.getName());
             }
         }

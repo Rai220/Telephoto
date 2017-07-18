@@ -3,6 +3,7 @@ package com.rai220.securityalarmbot.prefs;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.pengrad.telegrambot.model.User;
+import com.rai220.securityalarmbot.commands.types.MdSwitchType;
 import com.rai220.securityalarmbot.commands.types.SensitivityType;
 import com.rai220.securityalarmbot.model.TimeStats;
 import com.rai220.securityalarmbot.photo.AlarmType;
@@ -36,6 +37,7 @@ public class Prefs {
     public int minutesPeriod = 0;
     public CameraMode cameraMode = CameraMode.ALL;
     public CameraMode mdMode = CameraMode.FRONT;
+    public MdSwitchType mdSwitchType = MdSwitchType.OFF;
     public SensitivityType sensitivity = SensitivityType.MEDIUM;
     public SensitivityType shakeSensitivity = SensitivityType.LOW;
     public AlarmType alarmType = AlarmType.GIF;

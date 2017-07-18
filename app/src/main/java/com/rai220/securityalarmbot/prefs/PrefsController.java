@@ -6,6 +6,7 @@ import android.preference.PreferenceManager;
 
 import com.google.common.base.Strings;
 import com.rai220.securityalarmbot.utils.FabricUtils;
+import com.rai220.securityalarmbot.utils.L;
 
 import static com.rai220.securityalarmbot.prefs.Prefs.prefsGson;
 
@@ -24,6 +25,7 @@ public class PrefsController {
     private static final String IS_PRO = "IS_PRO";
 
     private volatile SharedPreferences preferences;
+    private volatile Prefs prefs = null;
 
     public synchronized void init(Context context) {
         if (preferences == null) {
@@ -55,18 +57,24 @@ public class PrefsController {
         preferences.edit().putBoolean(IS_HELP_SHOWN, isShown).apply();
     }
 
-    public void setPrefs(Prefs prefs) {
+    public synchronized void setPrefs(Prefs prefs) {
         String toSave = prefsGson.toJson(prefs);
+        L.i("Writing settings: " + toSave);
         preferences.edit().putString(PREFS_CODE, toSave).apply();
+        this.prefs = prefs;
     }
 
-    public Prefs getPrefs() {
-        String prefsJson = preferences.getString(PREFS_CODE, null);
-        if (prefsJson == null) {
-            return new Prefs();
-        } else {
-            return prefsGson.fromJson(prefsJson, Prefs.class);
+    public synchronized Prefs getPrefs() {
+        if (this.prefs == null) {
+            String prefsJson = preferences.getString(PREFS_CODE, null);
+            L.i("Reading settings: " + prefsJson);
+            if (prefsJson == null) {
+                prefs = new Prefs();
+            } else {
+                prefs = prefsGson.fromJson(prefsJson, Prefs.class);
+            }
         }
+        return prefs;
     }
 
     public void setAutorun(boolean isAutorunEnabled) {

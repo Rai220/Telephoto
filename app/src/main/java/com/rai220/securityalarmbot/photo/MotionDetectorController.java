@@ -76,20 +76,25 @@ public class MotionDetectorController {
                         while (!Thread.currentThread().isInterrupted()) {
                             L.i("MD working...");
                             final int[] cameraIds = FabricUtils.getSelectedCamerasForMd();
-                            boolean isOk = camera.addTask(
-                                    new CameraTask(cameraIds[0], 100, 80, true) {
-                                        @Override
-                                        public void processResult(ImageShot shot) {
-                                            try {
-                                                queue.put(shot);
-                                            } catch (Throwable ex) {
-                                                L.e(ex);
+                            boolean isOk = false;
+                            if (camera != null) {
+                                isOk = camera.addTask(
+                                        new CameraTask(cameraIds[0], 100, 80, true) {
+                                            @Override
+                                            public void processResult(ImageShot shot) {
+                                                try {
+                                                    queue.put(shot);
+                                                } catch (Throwable ex) {
+                                                    L.e(ex);
+                                                }
                                             }
-                                        }
-                                    }, false);
-                            if (isOk) {
-                                ImageShot shot = queue.take();
-                                isOk = detect(shot);
+                                        }, false);
+                                if (isOk) {
+                                    ImageShot shot = queue.take();
+                                    isOk = detect(shot);
+                                }
+                            } else {
+                                L.i("Camera is null yet. Let's wait some...");
                             }
 
                             if (!isOk) {

@@ -129,6 +129,8 @@ public class HiddenCamera2 implements Runnable, SurfaceHolder.Callback, Camera.P
                 }
             }, true);
         }
+
+        botService.getDetector().start(PrefsController.instance.getPrefs().mdSwitchType);
     }
 
     public boolean isInitializationFineshed() {
@@ -315,6 +317,8 @@ public class HiddenCamera2 implements Runnable, SurfaceHolder.Callback, Camera.P
 
                     if (surfaceHolder == null) {
                         throw new IllegalStateException("Surface holder is null!");
+                    } else if (surfaceHolder.getSurface() == null) {
+                        throw new IllegalStateException("Surface is null!");
                     }
                     mCamera.setPreviewDisplay(surfaceHolder);
                     //mCamera.setOneShotPreviewCallback(HiddenCamera2.this);

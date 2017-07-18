@@ -186,8 +186,6 @@ public class BotService extends Service implements MotionDetectorController.Moti
         timeStatsSaver.start();
         locationController.start();
 
-        getDetector().start(prefs.mdSwitchType);
-
         L.i("Service created");
         Answers.getInstance().logCustom(new CustomEvent("Service started!"));
     }

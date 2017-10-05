@@ -5,6 +5,7 @@ import android.graphics.ImageFormat;
 import android.hardware.Camera;
 import android.os.Handler;
 import android.os.Looper;
+import android.provider.Settings;
 import android.view.LayoutInflater;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -274,8 +275,12 @@ public class HiddenCamera2 implements Runnable, SurfaceHolder.Callback, Camera.P
         handler.post(new Runnable() {
             @Override
             public void run() {
-                setState(PLACING_VIEW);
-                windowManager.addView(view, layoutParams);
+                if (Settings.canDrawOverlays(context)) {
+                    setState(PLACING_VIEW);
+                    windowManager.addView(view, layoutParams);
+                } else {
+                    L.e("No overlay permission!");
+                }
             }
         });
     }

@@ -47,6 +47,13 @@ public class MotionDetectorController {
     private MdSwitchType mdType = null;
     private LinkedList<Long> processingTimes = new LinkedList<>();
 
+    private int[][] matrix = {
+            {0, 0, 0, 0, 0},
+            {0, 0, 0, 0, 0},
+            {0, 0, 0, 1, 0},
+            {0, 0, 0, 0, 0},
+            {0, 0, 0, 0, 0}};
+
     public void init(HiddenCamera2 camera, MotionDetectorListener listener) {
         this.camera = camera;
         this.listener = listener;
@@ -56,6 +63,19 @@ public class MotionDetectorController {
     private void initializeMotionDetector() {
         motionDetector = new MotionDetector();
         motionDetector.configure(PrefsController.instance.getPrefs().sensitivity.getMdValue());
+    }
+
+    public String setMatrix(int[][] matrix) {
+        if (matrix == null || matrix.length < 3 || matrix.length > 10) {
+            return "Incorrect matrix size. Please use matrix from 3*3 to 10*10";
+        }
+        for (int[] row : matrix) {
+            if (row.length != matrix.length) {
+                return "Incorrect matrix size! Please use square matrix!";
+            }
+        }
+        this.matrix = matrix;
+        return "OK";
     }
 
     public void start(final MdSwitchType mdType) {
@@ -153,7 +173,7 @@ public class MotionDetectorController {
             GrayU8 greyImage = new GrayU8(width, height);
             ConvertYV12.yu12ToGray(image, width, height, greyImage);
 
-            GrayU8 segmented = motionDetector.addImage(greyImage);
+            GrayU8 segmented = motionDetector.addImage(greyImage, matrix);
             saveProcessingTime(System.currentTimeMillis() - start);
 
             if (segmented != null && oldShot != null) {

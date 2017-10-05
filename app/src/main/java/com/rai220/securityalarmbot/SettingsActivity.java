@@ -8,9 +8,11 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.provider.Settings;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.LocalBroadcastManager;
 import android.text.Editable;
@@ -31,6 +33,8 @@ import com.rai220.securityalarmbot.utils.L;
 
 import io.fabric.sdk.android.Fabric;
 
+import static android.Manifest.permission.ACCESS_COARSE_LOCATION;
+import static android.Manifest.permission.ACCESS_FINE_LOCATION;
 import static android.content.pm.PackageManager.PERMISSION_GRANTED;
 import static com.rai220.securityalarmbot.BotService.TELEPHOTO_SERVICE_STOPPED;
 
@@ -44,6 +48,8 @@ public class SettingsActivity extends Activity {
     private static final String[] permissions = new String[]{
             Manifest.permission.INTERNET,
             Manifest.permission.ACCESS_NETWORK_STATE,
+            ACCESS_FINE_LOCATION,
+            ACCESS_COARSE_LOCATION,
             Manifest.permission.CAMERA,
             Manifest.permission.SYSTEM_ALERT_WINDOW,
             Manifest.permission.READ_EXTERNAL_STORAGE,
@@ -125,20 +131,28 @@ public class SettingsActivity extends Activity {
             requestMultiplePermissions();
         }
 
-        // ((EditText) findViewById(R.id.botTokenEditText)).setText(PrefsController.instance.getToken());
-        ((EditText) findViewById(R.id.botPassword)).setText(PrefsController.instance.getPassword());
-        ((CheckBox) findViewById(R.id.autorunCheckbox)).setChecked(PrefsController.instance.isAutorunEnabled());
+        // We can't work withoout overlays
+        if (!Settings.canDrawOverlays(this)) {
+            Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
+                    Uri.parse("package:" + getPackageName()));
+            startActivityForResult(intent, 123);
+        } else {
 
-        if (PrefsController.instance.isPro()) {
-            findViewById(R.id.proVersionButton).setVisibility(View.GONE);
-            ((ImageView) findViewById(R.id.mainIcon)).setImageResource(R.drawable.icon_pro);
+            // ((EditText) findViewById(R.id.botTokenEditText)).setText(PrefsController.instance.getToken());
+            ((EditText) findViewById(R.id.botPassword)).setText(PrefsController.instance.getPassword());
+            ((CheckBox) findViewById(R.id.autorunCheckbox)).setChecked(PrefsController.instance.isAutorunEnabled());
+
+            if (PrefsController.instance.isPro()) {
+                findViewById(R.id.proVersionButton).setVisibility(View.GONE);
+                ((ImageView) findViewById(R.id.mainIcon)).setImageResource(R.drawable.icon_pro);
+            }
+
+            if (!PrefsController.instance.isHelpShown()) {
+                showHelp();
+            }
+
+            LocalBroadcastManager.getInstance(this).registerReceiver(serviceStopReciever, new IntentFilter(TELEPHOTO_SERVICE_STOPPED));
         }
-
-        if (!PrefsController.instance.isHelpShown()) {
-            showHelp();
-        }
-
-        LocalBroadcastManager.getInstance(this).registerReceiver(serviceStopReciever, new IntentFilter(TELEPHOTO_SERVICE_STOPPED));
     }
 
     @Override

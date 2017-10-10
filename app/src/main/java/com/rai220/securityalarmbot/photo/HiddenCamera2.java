@@ -275,12 +275,8 @@ public class HiddenCamera2 implements Runnable, SurfaceHolder.Callback, Camera.P
         handler.post(new Runnable() {
             @Override
             public void run() {
-                if (Settings.canDrawOverlays(context)) {
-                    setState(PLACING_VIEW);
-                    windowManager.addView(view, layoutParams);
-                } else {
-                    L.e("No overlay permission!");
-                }
+                setState(PLACING_VIEW);
+                windowManager.addView(view, layoutParams);
             }
         });
     }

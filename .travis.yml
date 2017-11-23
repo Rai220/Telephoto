@@ -26,6 +26,7 @@ android:
 script:
 - "./gradlew clean build assemble"
 
+
 deploy:
   # Deploy the file(s) to the github release (other targets like amazon-aws or npm can be found here: http://docs.travis-ci.com/user/deployment/ )
   provider: releases

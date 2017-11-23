@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import com.crashlytics.android.Crashlytics;
 import com.rai220.securityalarmbot.commands.types.MdSwitchType;
 import com.rai220.securityalarmbot.commands.types.SensitivityType;
+import com.rai220.securityalarmbot.motiondetector.MotionDetector;
 import com.rai220.securityalarmbot.prefs.PrefsController;
 import com.rai220.securityalarmbot.utils.FabricUtils;
 import com.rai220.securityalarmbot.utils.L;
@@ -21,7 +22,6 @@ import java.util.concurrent.LinkedBlockingQueue;
 import boofcv.android.VisualizeImageData;
 import boofcv.core.encoding.ConvertYV12;
 import boofcv.struct.image.GrayU8;
-import me.telephoto.motiondetector.MotionDetector;
 
 /**
  * Created by rai220 on 10/20/16.

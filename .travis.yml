@@ -40,7 +40,7 @@ deploy:
   # only deploy if
   on:
     # we are on this repo
-    repo: larsgrefer/bpm-meter-android
+    repo: Rai220/Telephoto
     # and we are building a tag
     tags: true
 

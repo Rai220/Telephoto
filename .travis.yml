@@ -1,5 +1,7 @@
 language: android
-cache: bundler
+cache:
+  directories:
+  - "$HOME/.cache"
 android:
   components:
     # Uncomment the lines below if you want to

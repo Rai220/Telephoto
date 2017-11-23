@@ -1,12 +1,7 @@
 language: android
 cache:
   directories:
-  - "$HOME/.m2"
-  - "$HOME/build"
-  - "$HOME/app/build"
-  - "$HOME/.gradle"
-  - "$HOME/.gradle/caches/"
-  - "$HOME/.gradle/wrapper/"
+  - "$HOME"
 android:
   components:
     # Uncomment the lines below if you want to

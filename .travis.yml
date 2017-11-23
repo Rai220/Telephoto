@@ -1,9 +1,4 @@
 language: android
-cache:
-  directories:
-    - $HOME/.gradle/caches/
-    - $HOME/.gradle/wrapper/
-    - $HOME/.android/build-cache
 android:
   components:
     # Uncomment the lines below if you want to
@@ -30,3 +25,22 @@ android:
 
 script:
 - "./gradlew clean build assemble"
+
+deploy:
+  # Deploy the file(s) to the github release (other targets like amazon-aws or npm can be found here: http://docs.travis-ci.com/user/deployment/ )
+  provider: releases
+  # The oauth token for github (used by travis to upload the file(s) to github)
+  api_key: 52d2cb39a92e6706b38c9af99a18e8111aae6645
+    # The api-key is encrypted like described here: http://docs.travis-ci.com/user/encryption-keys/  (only travis can decrypt the key)
+    # secure: X9fnLUh/qKVwtDOFicmHBZN3r0sEnM3kp4st/vjRCuDgTV30pG/0y3kjnbSuRm/Qgw8sgvzD5RlGQ7aHiU6naJnlrAbBeHVs3EECMvRc2zZjeUGCg4Iwtd0rPnvl2X28jOFTOeOM24FP6cqhVK/keilLcTCjB4llTYjbV4FkIqo=
+  # Which file(s) to upload
+  file: app/build/outputs/apk/telephoto-1.5.11b-12-release-unsigned.apk
+  # do not delete the files we're trying to upload
+  skip_cleanup: true
+  # only deploy if
+  on:
+    # we are on this repo
+    repo: larsgrefer/bpm-meter-android
+    # and we are building a tag
+    tags: true
+

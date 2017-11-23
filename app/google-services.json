@@ -1,27 +1,27 @@
 {
   "project_info": {
-    "project_number": "<PLACE_YOUR>",
-    "firebase_url": "<PLACE_YOUR>",
-    "project_id": "<PLACE_YOUR>",
-    "storage_bucket": "<PLACE_YOUR>"
+    "project_number": "596470572574",
+    "firebase_url": "https://telephoto-147814.firebaseio.com",
+    "project_id": "telephoto-147814",
+    "storage_bucket": "telephoto-147814.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "<PLACE_YOUR>",
+        "mobilesdk_app_id": "1:596470572574:android:fdbaf2e6e1b8d86b",
         "android_client_info": {
           "package_name": "com.rai220.securityalarmbot"
         }
       },
       "oauth_client": [
         {
-          "client_id": "<PLACE_YOUR>",
+          "client_id": "596470572574-lp914v2che43mak69vf46u9ta2hv21je.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "<PLACE_YOUR>"
+          "current_key": "AIzaSyAy9LWg514UkrLh_5dyAIt7jkCn_MswLiU"
         }
       ],
       "services": {

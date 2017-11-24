@@ -31,9 +31,9 @@ deploy:
   # Deploy the file(s) to the github release (other targets like amazon-aws or npm can be found here: http://docs.travis-ci.com/user/deployment/ )
   provider: releases
   # The oauth token for github (used by travis to upload the file(s) to github)
-  api_key: ddee9e183518f38209928986c2fda303a01d7e63
+  api_key:
     # The api-key is encrypted like described here: http://docs.travis-ci.com/user/encryption-keys/  (only travis can decrypt the key)
-    # secure: X9fnLUh/qKVwtDOFicmHBZN3r0sEnM3kp4st/vjRCuDgTV30pG/0y3kjnbSuRm/Qgw8sgvzD5RlGQ7aHiU6naJnlrAbBeHVs3EECMvRc2zZjeUGCg4Iwtd0rPnvl2X28jOFTOeOM24FP6cqhVK/keilLcTCjB4llTYjbV4FkIqo=
+    secure: bS0MZdl1s2p70in1bgiuV9MofIJbkisRCWEPst5ZyKE+ngSlrGiPb15H6RRGx6+JdbcHhrOmxr7PVJ7LVs5/M/R5y4E1l81BqF4tVscRF/K/QJ6Lx6X1aytCd0l3H3OUD3prEk5JhL8Gc3ACRAmQEraCQQ6ua7F5AZo38LDXCDB3R4OD9TwiLqcSplSd73Tu/RhM3bs03FwrizbmbuZB7GURlsMfK4yNjCOUCQFXWOk63I2TzGfYZhVkzdbIi0AAzAqxYS9is+XXaHt0Twz2xAHklT7oiSK1pM9J7C5thqPwgbVuQQrMu+EqhtGooULVKZ3OXmVzbl8SAm9xPIzbNdwbZlHGFv+NQTtpeC1d+ma1HCxto8FtW6RgPTgmckWbOWoCv1bPDOr4UkiQlDzbigwyzBLpo5pSLUhSZgBV5txzljPKbGSaPmQfNFz81bCRu+qxUF150VBSJXbVkDT5i2EG3AcRBcIWuSlhl5qlJwu/UCRFcj7/41ksX8KCNRnoDOz1/HMpodhxOMGgR0jx2ufuw/GgfJL6LAqAtvUKpcKRh9lyvHMXlj0+4j7P6Rq9Gw1OFMu+eFFBjClz1UlfZUrf71dzlnhK90Jay/e7azp70WCI6nmMFi96N/qkmVPcpsZw7A3WpEHun3fsIamMvy8HLQcBZTzEx9szOJEqABM=
   # Which file(s) to upload
   file: app/build/outputs/apk/telephoto-1.5.11b-12-release-unsigned.apk
   # do not delete the files we're trying to upload

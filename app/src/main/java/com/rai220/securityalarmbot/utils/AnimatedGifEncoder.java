@@ -62,7 +62,7 @@ public class AnimatedGifEncoder {
      *          int delay time in milliseconds
      */
     public void setDelay(int ms) {
-        delay = ms / 10;
+        delay = ms / 100;
     }
 
     /**
@@ -195,7 +195,7 @@ public class AnimatedGifEncoder {
      */
     public void setFrameRate(float fps) {
         if (fps != 0f) {
-            delay = (int)(100 / fps);
+            delay = (int)(500 / fps);
         }
     }
 

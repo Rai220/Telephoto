@@ -60,9 +60,9 @@ public class HiddenCamera2 implements Runnable, SurfaceHolder.Callback, Camera.P
 
     /** Количество кадров, которое мы пропускаем перед тем, как сделать фото */
     //private volatile int FRAMES_TO_SKIP = 5;
-    private volatile int FRAMES_TO_SKIP = 3;
+    private volatile int FRAMES_TO_SKIP = 7;
 
-    public static final long MD_DELAY = 3500;
+    public static final long MD_DELAY = 2500;
 
     private final BlockingQueue<CameraTask> tasksQueue = new LinkedBlockingQueue<>(MAX_CAMERA_TASKS_QUEUE);
     private volatile Thread cameraProcessingThread = null;

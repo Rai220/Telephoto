@@ -30,7 +30,7 @@ public class MotionDetectorController {
     private static final ExecutorService es = Executors.newCachedThreadPool();
 
     /** Для быстрых устройств */
-    private static final int SHORT_TIMEOUT = 3 * 1000;
+    private static final int SHORT_TIMEOUT = 4 * 1000;
     //private static final int IMAGE_HISTORY_SIZE = 5;
     private static final int IMAGE_HISTORY_SIZE = 3;
 
@@ -99,7 +99,7 @@ public class MotionDetectorController {
                             boolean isOk = false;
                             if (camera != null) {
                                 isOk = camera.addTask(
-                                        new CameraTask(cameraIds[0], 100, 80, true) {
+                                        new CameraTask(cameraIds[0], 100, 75, true) {
                                             @Override
                                             public void processResult(ImageShot shot) {
                                                 try {

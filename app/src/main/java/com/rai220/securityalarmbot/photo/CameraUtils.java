@@ -22,8 +22,8 @@ public class CameraUtils {
 
             int score = dx*dx + dy*dy;
             if( score < bestScore ) {
-                best = score;
-                bestScore = i;
+                best = i;
+                bestScore = score;
             }
         }
 

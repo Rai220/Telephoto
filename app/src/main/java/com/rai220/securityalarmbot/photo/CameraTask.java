@@ -25,7 +25,7 @@ public abstract class CameraTask {
         this.cameraId = cameraId;
         this.isMd = isMd;
 
-        if (w <= 0 || h <= 0) {
+        if (w < 0 || h < 0) {
             Prefs prefs = PrefsController.instance.getPrefs();
             Prefs.CameraPrefs cameraPrefs = prefs.getCameraPrefs(cameraId);
             if (cameraPrefs != null && cameraPrefs.width != 0 && cameraPrefs.height != 0) {
